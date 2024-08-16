@@ -1,5 +1,5 @@
 import Main from '../../pages/main/main';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AUTH_ERROR, AuthorizationStatus } from '../../const';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from '../../pages/not-found/not-found';
 import Login from '../../pages/login/login';
@@ -13,6 +13,7 @@ import browserHistory from '../history/browser-history';
 import { useEffect } from 'react';
 import { fetchFavoriteOffers } from '../../store/api-actions';
 import Layout from '../layout/layout';
+import { toast } from 'react-toastify';
 
 export default function App(): JSX.Element {
   const authStatus = useAppSelector((initialState) => initialState.authStatus);
@@ -25,7 +26,13 @@ export default function App(): JSX.Element {
     if (authStatus === AuthorizationStatus.Auth) {
       dispatch(fetchFavoriteOffers());
     }
-  }, [authStatus, dispatch]);
+    if (
+      authStatus === AuthorizationStatus.NoAuth ||
+      authStatus === AuthorizationStatus.Unknown
+    ) {
+      toast.error(AUTH_ERROR);
+    }
+  }, [authStatus]);
 
   if (authStatus === AuthorizationStatus.Unknown || loadingData) {
     return <Loading />;

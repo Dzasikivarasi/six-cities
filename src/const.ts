@@ -2,13 +2,13 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offers'
+  Offer = '/offers',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
+  Unknown = 'UNKNOWN',
 }
 
 export const enum ApiRoute {
@@ -16,7 +16,7 @@ export const enum ApiRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
-  Favorite = '/favorite'
+  Favorite = '/favorite',
 }
 
 export const ratingStars = [
@@ -24,7 +24,7 @@ export const ratingStars = [
   { value: 4, label: 'good' },
   { value: 3, label: 'not bad' },
   { value: 2, label: 'badly' },
-  { value: 1, label: 'terribly' }
+  { value: 1, label: 'terribly' },
 ];
 
 export const Reviews = {
@@ -43,12 +43,14 @@ export const ERROR_TIMER = 5000;
 
 export enum MarkerURL {
   DEFAULT = 'img/pin.svg',
-  CURRENT = 'img/pin-active.svg'
+  CURRENT = 'img/pin-active.svg',
 }
 
 export enum SubmitStatus {
   Null,
   Pending,
   Fulfilled,
-  Error
+  Error,
 }
+
+export const AUTH_ERROR = 'Вы не авторизованы';
