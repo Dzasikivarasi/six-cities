@@ -16,7 +16,9 @@ import Layout from '../layout/layout';
 
 export default function App(): JSX.Element {
   const authStatus = useAppSelector((initialState) => initialState.authStatus);
-  const loadingData = useAppSelector((initialState) => initialState.loadingData);
+  const loadingData = useAppSelector(
+    (initialState) => initialState.loadingData
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -25,19 +27,18 @@ export default function App(): JSX.Element {
     }
   }, [authStatus, dispatch]);
 
-  if(authStatus === AuthorizationStatus.Unknown || loadingData){
-    return (
-      <Loading />
-    );
+  if (authStatus === AuthorizationStatus.Unknown || loadingData) {
+    return <Loading />;
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
+    <HistoryRouter history={browserHistory} basename="/six-cities">
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
           <Route path={`${AppRoute.Offer}/:id`} element={<Offer />} />
-          <Route path={AppRoute.Favorites}
+          <Route
+            path={AppRoute.Favorites}
             element={
               <PrivateRoute>
                 <Favorites />
@@ -46,7 +47,7 @@ export default function App(): JSX.Element {
           />
         </Route>
         <Route path={AppRoute.Login} element={<Login />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </HistoryRouter>
   );
