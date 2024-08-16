@@ -32,7 +32,7 @@ export default function App(): JSX.Element {
     ) {
       toast.error(AUTH_ERROR);
     }
-  }, [authStatus]);
+  }, [authStatus, dispatch]);
 
   if (authStatus === AuthorizationStatus.Unknown || loadingData) {
     return <Loading />;
