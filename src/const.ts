@@ -53,4 +53,5 @@ export enum SubmitStatus {
   Error,
 }
 
-export const AUTH_ERROR = 'Вы не авторизованы';
+export const AUTH_INFO =
+  'Для просмотра избранных предложений необходимо авторизоваться';

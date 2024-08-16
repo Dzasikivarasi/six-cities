@@ -2,8 +2,15 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AVAILABLE_CITIES } from '../data';
 import { CommentsType, PlaceType } from '../types/types';
 import {
-  updateCityAction, loadOffersAction, requareAuthAction, updateCommentsAction,
-  setDataLoadingStatusAction, loadFavoriteCardsAction, loadOfferDetailsAction, loadCommentsAction, loadNearByOffersAction,
+  updateCityAction,
+  loadOffersAction,
+  requareAuthAction,
+  updateCommentsAction,
+  setDataLoadingStatusAction,
+  loadFavoriteCardsAction,
+  loadOfferDetailsAction,
+  loadCommentsAction,
+  loadNearByOffersAction,
 } from './actions';
 import { AuthorizationStatus } from '../const';
 import { loginAction } from './api-actions';
@@ -56,7 +63,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.loadingData = action.payload;
     })
     .addCase(updateCommentsAction, (state, action) => {
-      state.currentOfferComments = [...state.currentOfferComments, action.payload];
+      state.currentOfferComments = [
+        ...state.currentOfferComments,
+        action.payload,
+      ];
     })
     .addCase(loadFavoriteCardsAction, (state, action) => {
       state.favoriteCards = action.payload;
